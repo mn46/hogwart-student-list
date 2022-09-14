@@ -51,8 +51,7 @@ main {
 #student-details {
     padding: 5%;
     display: grid;
-    grid-template-columns: 30% 30% 25% 5%;
-    grid-gap: 3%;
+    grid-template-rows: 5% 95%;
     width: 80vw;
     height: 60vh;
     position: absolute;
@@ -66,6 +65,18 @@ main {
     backdrop-filter: blur(10px);
 }
 
+#close {
+    justify-self: end;
+    background-color: transparent;
+    border: none;
+}
+
+#sec-row {
+    display: grid;
+    grid-template-columns: 30% 30% 25%;
+    grid-gap: 3%;
+}
+
 #student-actions {
     display: flex;
     flex-direction: column;
@@ -74,12 +85,6 @@ main {
 
 #student-actions button {
     height: 5vh;
-}
-
-#close {
-    align-self: start;
-    background-color: transparent;
-    border: none;
 }
 
 #pop-up {
@@ -135,5 +140,38 @@ main {
 
     #student-list {
         margin-top: 5vh;
+    }
+
+    /* student details */
+
+    #student-details {
+        padding: 5%;
+        grid-template-columns: 100%;
+        grid-template-rows: 5% 1fr 1fr 1fr;
+        height: 90vh;
+    }
+
+    #sec-row {
+        display: block;
+    }
+
+    #student-actions button {
+        height: 6vh;
+    }
+
+    #close {
+        align-self: start;
+        background-color: transparent;
+        border: none;
+    }
+
+    #pop-up {
+        height: 20vh;
+        width: 70vw;
+    }
+
+    #ok {
+        width: 35vw;
+        height: 5vh;
     }
 }
