@@ -9,53 +9,56 @@
 </head>
 <body>
     <main>
-    <div id="sort-filter">
 
-        <button>sort & filter</button>
-
-        <div id="sort">
-            <h2>Sort</h2>
-            <label for="name">
-                <input type="checkbox" name="name" id="name" value="name">alphabetically by first name
-            </label>
-            
-            <label for="surname">
-                <input type="checkbox" name="surname" id="surname" value="surname">alphabetically by last name
-            </label>
-            
-            <label for="house">
-                <input type="checkbox" name="house" id="house" value="house">by house
-            </label>
-            
-        </div>
-
-        <div id="filter">
-            <h2>Filter</h2>
-            <label for="prefects">
-                <input type="checkbox" name="prefects" id="prefects" value="prefects">prefects
-            </label>
-            
-            <label for="inq">
-                <input type="checkbox" name="inq" id="inq" value="inq">members of Inquisitorial Squad
-            </label>
-            
-            <label for="girls">
-                <input type="checkbox" name="girls" id="girls" value="girls">girls
-            </label>
-            
-            <label for="boys">
-                <input type="checkbox" name="boys" id="boys" value="boys">boys
-            </label>
-            
-            <label for="expelled">
-                <input type="checkbox" name="expelled" id="expelled" value="expelled">expelled students
-            </label>
-            
-        </div>
-
-        <button>Apply</button>
-    </div>
     
+    <div id="sort-filter">
+        <button class="hidden">sort & filter</button>
+
+        <div id="settings">
+            <div id="sort">
+                <h2>Sort</h2>
+                <label for="name">
+                    <input type="checkbox" name="name" id="name" value="name">alphabetically by first name
+                </label>
+            
+                <label for="surname">
+                    <input type="checkbox" name="surname" id="surname" value="surname">alphabetically by last name
+                </label>
+            
+                <label for="house">
+                    <input type="checkbox" name="house" id="house" value="house">by house
+                </label>
+            
+            </div>
+
+            <div id="filter">
+                <h2>Filter</h2>
+                <label for="prefects">
+                    <input type="checkbox" name="prefects" id="prefects" value="prefects">prefects
+                </label>
+            
+                <label for="inq">
+                    <input type="checkbox" name="inq" id="inq" value="inq">members of Inquisitorial Squad
+                </label>
+            
+                <label for="girls">
+                    <input type="checkbox" name="girls" id="girls" value="girls">girls
+                </label>
+            
+                <label for="boys">
+                    <input type="checkbox" name="boys" id="boys" value="boys">boys
+                </label>
+            
+                <label for="expelled">
+                    <input type="checkbox" name="expelled" id="expelled" value="expelled">expelled students
+                </label>
+            
+            </div>
+
+            <button id="apply">Apply</button>
+        </div>
+    </div>
+
     <div id="list-container">
         <div id="list-details">
             <h1>All students</h1>
@@ -65,7 +68,6 @@
             </div>
         </div>
         <div id="search-bar">
-            <label for="search">Search for student</label>
             <input type="search" id="search" name="search">
             <button>search</button>
         </div>
@@ -75,8 +77,50 @@
                 <p>Pansy Parkinson</p>
                 <button>read more</button>
             </div>
+            <div class="student">
+                <p>Pansy Parkinson</p>
+                <button>read more</button>
+            </div>
+            <div class="student">
+                <p>Pansy Parkinson</p>
+                <button>read more</button>
+            </div>
         </div>
     </div>
+
+    <div id="student-details" class="hidden">
+        <div id="picture">
+            <h2 id="fullname">Pansy Parkinson</h2>
+            <img alt="student photo" src="">
+            <div id="house-info">
+                <img alt="House crest" src="">
+                <h2>Gryffindor</h2>
+            </div>
+        </div>
+        <div id="detailed-info">
+            <p id="first-name">First name: Pansy</p>
+            <p id="middle-name">Middle Name: n/a</p>
+            <p id="last-name">Last name: Parkinson</p>
+            <p id="nick-name">Nickname: n/a</p>
+            <p id="gender">Gender: girl</p>
+            <p id="prefect">Prefect: no</p>
+            <p id="blood-status">Blood status: pure blood</p>
+        </div>
+        <div id="student-actions">
+            <button id="make-prefect">make a prefect</button>
+            <button id="add-inq">add to Inquisitorial Squad</button>
+            <button id="expell">expell</button>
+        </div>
+        <button id="close">
+            <img alt="close button" src=>
+        </button>
+    </div>
+
+    <div id="pop-up" class="hidden">
+        <p id="confirmation">Pansy is now a prefect.</p>
+        <button id="ok">ok</button>
+    </div>
+
     </main>
     <script src="script.js"></script>
 </body>
