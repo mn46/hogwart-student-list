@@ -73,22 +73,16 @@
         </div>
         
         <div id="student-list">
-            <div class="student">
-                <p>Pansy Parkinson</p>
-                <button>read more</button>
-            </div>
-            <div class="student">
-                <p>Pansy Parkinson</p>
-                <button>read more</button>
-            </div>
-            <div class="student">
-                <p>Pansy Parkinson</p>
-                <button>read more</button>
-            </div>
+            <template id="student">
+                <div class="student">
+                    <p>Pansy Parkinson</p>
+                    <button>read more</button>
+                </div>
+            </template>
         </div>
     </div>
 
-    <div id="student-details">
+    <div id="student-details" class="hidden">
 
         <button id="close">
             <img alt="close button" src=>
@@ -120,12 +114,12 @@
         </div>
     </div>
 
-    <div id="pop-up">
+    <div id="pop-up" class="hidden">
         <p id="confirmation">Pansy is now a prefect.</p>
         <button id="ok">ok</button>
     </div>
 
     </main>
-    <script src="script.js"></script>
+    <script type="module" src="script/script.js"></script>
 </body>
 </html>
