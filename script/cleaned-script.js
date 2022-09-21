@@ -21,7 +21,7 @@ function start() {
     .then((response) => response.json())
     .then((jsonData) => {
       createObjects(jsonData);
-      console.log(jsonData);
+      // console.log(jsonData);
     });
 }
 
@@ -76,12 +76,37 @@ function createObjects(jsonData) {
 
     student.lastName = firstToUppercase(cutOffLast(trimString(jsonObject.fullname)));
     student.gender = jsonObject.gender;
+
+    if (jsonObject.fullname.includes("-")) {
+      const noHyphen = student.lastName.slice(student.lastName.indexOf("-") + 1);
+      student.imageFile = noHyphen.toLowerCase() + "_" + noHyphen[0].toLowerCase() + ".png";
+    } else {
+      student.imageFile = student.lastName.toLowerCase() + "_" + student.firstName[0].toLowerCase() + ".png";
+    }
+
     student.house = firstToUppercase(jsonObject.house);
 
     allStudents.push(student);
   });
+
+  // addData();
 }
 
-console.log(allStudents);
+// function addData() {
+//   allStudents.forEach((student) => {
+//     console.log("test" + student);
+//     const studTemplate = document.querySelector("#student").content;
 
-export default allStudents;
+//     const studClone = studTemplate.cloneNode(true);
+
+//     studClone.querySelector(".fullname").textContent = student.firstName + " " + student.middleName + " " + student.nickName + " " + student.lastName;
+
+//     studClone.querySelector(".read-more").addEventListener("click", showDetails);
+
+//     document.querySelector("#student-list").appendChild(studClone);
+//   });
+// }
+
+// function showDetails() {
+//   console.log(this);
+// }

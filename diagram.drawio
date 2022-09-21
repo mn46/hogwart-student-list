@@ -1,0 +1,102 @@
+<mxfile host="65bd71144e">
+    <diagram id="p76yIHVkMcjjHIO2uy8P" name="Page-1">
+        <mxGraphModel dx="925" dy="499" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="3" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="830" y="10" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="START" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="839" y="15" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="3" target="6">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="870" y="210" as="sourcePoint"/>
+                        <mxPoint x="870" y="130" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="8" style="edgeStyle=none;html=1;" edge="1" parent="1" source="6" target="9">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="870" y="230" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6" value="Prepare data" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="680" y="80" width="380" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="allStudents = [ ]&lt;br&gt;i = 0 (will be used for details ab students)&lt;br&gt;const adjustSearch = {sort = &quot;&quot;, filter = &quot;&quot;}&lt;br&gt;query selector on &quot;apply&quot; button: getSort&lt;br&gt;Fetch data from JSON file" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="6">
+                    <mxGeometry x="10" y="22" width="360" height="98" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" style="edgeStyle=none;html=1;" edge="1" parent="1" source="9" target="13">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="870" y="450" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" value="For each: clean up the data" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="680" y="250" width="380" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Trim &quot;fullname&quot; to make sure there is no white space around&lt;br&gt;Use object prototype to create:&lt;br&gt;- first name ([0] to indexOf (&quot; &quot;), [0] to uppercase)&lt;br&gt;- middle name (in. of space to last in. of space,[0] to uppercase)&lt;br&gt;- nickname (if fullname includes &quot;,[0] to uppercase)&lt;br&gt;- last name (from last in. of space,[0] to uppercase)&lt;br&gt;- house (house, [0] to upper case and rest to lower case)&lt;br&gt;- gender (gender)&lt;br&gt;- prefect (will be true or false)&lt;br&gt;- inq. squad (will be true or false)&lt;br&gt;Push new object to the array" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="9">
+                    <mxGeometry x="10" y="23" width="361" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="allStudents: add templates in HTML" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="680" y="490" width="380" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="&lt;font face=&quot;helvetica&quot;&gt;For each object in the array:&lt;br&gt;- add a student on the list&lt;br&gt;- button.addEventListener(updateDetails)&lt;br&gt;- i++&lt;br&gt;&lt;/font&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="13">
+                    <mxGeometry x="10" y="23" width="360" height="67" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="13" target="22">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="870" y="600" as="sourcePoint"/>
+                        <mxPoint x="869.6" y="660" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="user clicks &quot;READ MORE&quot;" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="19">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="updateDetails" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="679.2" y="650" width="380.8" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="remove class &quot;hidden&quot;&lt;br&gt;add content from allStudents[i]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="22">
+                    <mxGeometry x="10.8" y="30" width="359.2" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="30">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="680" y="134" as="sourcePoint"/>
+                        <mxPoint x="430" y="132" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="29" value="user clicks &quot;Apply&quot; on filtering panel" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="28">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="30" target="33">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="310" y="260" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="30" value="getSort" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="70" width="220" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="const sortType = value from #sort&lt;br&gt;switch sortType -&amp;gt; different .sort functions for each of the type; result is &quot;saved&quot; in adjustSearch.sort&lt;br&gt;&lt;br&gt;getFilter()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="30">
+                    <mxGeometry x="10" y="23" width="200" height="97" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="33" target="36">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="310" y="440" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="33" value="getFilter" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="260" width="220" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="const sortType = value from #filter&lt;br&gt;switch sortType -&amp;gt; different .sort functions for each of the type; result is &quot;saved&quot; in adjustSearch.filter&lt;br&gt;&lt;br&gt;adjustList(adjustSearch.sort, adjustSearch.filter)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="33">
+                    <mxGeometry x="10" y="23" width="200" height="97" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="adjustList(sort, filter)" style="swimlane;startSize=23;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="450" width="220" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="const sortType = value from #filter&lt;br&gt;switch sortType -&amp;gt; different .sort functions for each of the type; result is &quot;saved&quot; in adjustSearch.filter&lt;br&gt;&lt;br&gt;adjustList(adjustSearch.sort, adjustSearch.filter)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="36">
+                    <mxGeometry x="10" y="23" width="200" height="97" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

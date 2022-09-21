@@ -25,10 +25,6 @@
                     <input type="checkbox" name="surname" id="surname" value="surname">alphabetically by last name
                 </label>
             
-                <label for="house">
-                    <input type="checkbox" name="house" id="house" value="house">by house
-                </label>
-            
             </div>
 
             <div id="filter">
@@ -56,6 +52,7 @@
             </div>
 
             <button id="apply">Apply</button>
+            <button id="clear">clear results</button>
         </div>
     </div>
 
@@ -75,8 +72,8 @@
         <div id="student-list">
             <template id="student">
                 <div class="student">
-                    <p>Pansy Parkinson</p>
-                    <button>read more</button>
+                    <p class="fullname"></p>
+                    <button class="read-more">read more</button>
                 </div>
             </template>
         </div>

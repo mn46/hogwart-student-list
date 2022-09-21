@@ -38,6 +38,11 @@ main {
     height: 5vh;
 }
 
+#student-list {
+    display: flex;
+    flex-direction: column;
+}
+
 .student {
     margin-top: 4vh;
     display: flex;
