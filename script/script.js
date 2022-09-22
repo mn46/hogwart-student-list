@@ -15,11 +15,11 @@ const Student = {
   inqSquad: false,
   prefect: false,
   expelled: false,
+  bloodStatus: undefined,
 };
 
-// i will be used when adding data to the pop-up with detailed info about each student
-let iteration = 0;
 const allStudents = [];
+const expelledStudents = [];
 
 function start() {
   fetch(url)
@@ -53,7 +53,7 @@ function cutBetweenSpaces(string) {
 // create new string from last space to the end of primary string
 
 function cutOffLast(string) {
-  const lastString = string.slice(string.lastIndexOf(" "));
+  const lastString = string.slice(string.lastIndexOf(" "), string.length);
   return trimString(lastString);
 }
 
@@ -84,9 +84,9 @@ function createObjects(jsonData) {
 
     if (jsonObject.fullname.includes("-")) {
       const noHyphen = student.lastName.slice(student.lastName.indexOf("-") + 1);
-      student.imageFile = noHyphen.toLowerCase() + "_" + noHyphen[0].toLowerCase() + ".png";
+      student.imageFile = "assets/images/" + noHyphen.toLowerCase() + "_" + noHyphen[0].toLowerCase() + ".png";
     } else {
-      student.imageFile = student.lastName.toLowerCase() + "_" + student.firstName[0].toLowerCase() + ".png";
+      student.imageFile = "assets/images/" + student.lastName.toLowerCase() + "_" + student.firstName[0].toLowerCase() + ".png";
     }
 
     student.house = firstToUppercase(jsonObject.house);
@@ -105,28 +105,75 @@ function addData(chosenArray) {
     element.remove();
   });
 
+  document.querySelector("#number").textContent = "Number of students: " + chosenArray.length;
+
   chosenArray.forEach((element) => {
     console.log(element);
-    iteration++;
+    console.log("iteration number:" + element.iteration);
     const studTemplate = document.querySelector("#student").content;
 
     const studClone = studTemplate.cloneNode(true);
 
     studClone.querySelector(".fullname").textContent = element.firstName + " " + element.middleName + " " + element.nickName + " " + element.lastName;
 
-    studClone.querySelector(".read-more").addEventListener("click", showDetails);
+    studClone.querySelector(".read-more").addEventListener("click", () => showDetails(element));
+    // studClone.querySelector(".read-more").addEventListener("click", showDetails);
+    studClone.querySelector(".expell").addEventListener("click", () => expellStudent(element));
 
     document.querySelector("#student-list").appendChild(studClone);
   });
 }
 
-function showDetails() {
+// expelling student
+
+function expellStudent(student) {
+  student.expelled = true;
+}
+
+// displaying pop-up with detailed info about student
+
+function showDetails(student) {
   console.log("show details");
+
+  document.querySelector("#student-details").classList.remove("hidden");
+
+  // adding data
+
+  document.querySelector("#fullname").textContent = student.firstName + " " + student.middleName + " " + student.nickName + " " + student.lastName;
+  document.querySelector("#student-photo").src = student.imageFile;
+  document.querySelector("#house-info h2").textContent = student.house;
+  document.querySelector("#first-name").textContent = "First name: " + student.firstName;
+  document.querySelector("#middle-name").textContent = "Middle name: " + student.middleName;
+  document.querySelector("#last-name").textContent = "Last name: " + student.lastName;
+  document.querySelector("#nick-name").textContent = "Nick name: " + student.nickName;
+  document.querySelector("#gender").textContent = "Gender: " + student.gender;
+  document.querySelector("#prefect").textContent = "Prefect: " + student.prefect;
+  document.querySelector("#blood-status").textContent = "Blood status: " + student.bloodStatus;
+
+  // event listeners for buttons
+  document.querySelector("#close").addEventListener("click", closeDetails);
+  document.querySelector("#make-prefect").addEventListener("click", () => makePrefect(student));
+  document.querySelector("#add-inq").addEventListener("click", () => addToSquad(student));
+}
+
+function closeDetails() {
+  document.querySelector("#close").removeEventListener;
+  document.querySelector("#student-details").classList.add("hidden");
+}
+
+// adding prefects and members of inq. squad
+
+function makePrefect(student) {
+  console.log("prefecting" + student);
+}
+
+function addToSquad(student) {
+  console.log("adding to squad" + student);
 }
 
 // SORTING AND FILTERING
 
-// making sort and filters work
+// making "apply" button work and selecting inputs for sorting and filtering
 
 document.querySelector("#apply").addEventListener("click", startAdjusting);
 
@@ -140,8 +187,8 @@ function startAdjusting() {
 
 // function for checking if any of the checkboxes are checked
 
-function checked() {
-  return array.checked === true;
+function isChecked(element) {
+  return element.checked === true;
 }
 
 // SORTING
@@ -149,22 +196,25 @@ function checked() {
 function getSort(sortInput, filterInput) {
   console.log("sort");
   let sortedArray;
-  sortInput.forEach((option) => {
-    if (option.checked === true) {
-      switch (option.value) {
-        case "name":
-          sortedArray = allStudents.sort(compareName);
-          console.log("sort by first name");
-          break;
-        case "surname":
-          sortedArray = allStudents.sort(compareSurname);
-          console.log("sort by last name");
-          break;
+  if (sortInput.some(isChecked)) {
+    sortInput.forEach((option) => {
+      if (option.checked === true) {
+        switch (option.value) {
+          case "name":
+            sortedArray = allStudents.sort(compareName);
+            console.log("sort by first name");
+            break;
+          case "surname":
+            sortedArray = allStudents.sort(compareSurname);
+            console.log("sort by last name");
+            break;
+        }
       }
-    } else {
-      sortedArray = allStudents;
-    }
-  });
+    });
+  } else {
+    sortedArray = allStudents;
+  }
+
   console.log(sortedArray);
   getFilter(sortedArray, filterInput);
 }
@@ -233,15 +283,15 @@ function getFilter(sortedArray, filterInput) {
   adjustList(filteredArray);
 }
 
-function isChecked(element) {
-  return element.checked === true;
-}
-
 function adjustList(filteredArray) {
   addData(filteredArray);
-  document.querySelector("#clear").addEventListener("click", clearResults);
 }
+
+// cleaning the results
+document.querySelector("#clear").addEventListener("click", clearResults);
 
 function clearResults() {
   addData(allStudents);
 }
+
+// SEARCHING
