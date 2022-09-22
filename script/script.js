@@ -11,7 +11,7 @@ const Student = {
   nickName: "",
   gender: "",
   imageFile: ``,
-  house: "",
+  house: undefined,
   inqSquad: false,
   prefect: false,
   expelled: false,
@@ -90,6 +90,10 @@ function createObjects(jsonData) {
     }
 
     student.house = firstToUppercase(jsonObject.house);
+    student.inqSquad = false;
+    student.prefect = false;
+    student.expelled = false;
+    student.bloodStatus = false;
 
     allStudents.push(student);
   });
@@ -105,11 +109,10 @@ function addData(chosenArray) {
     element.remove();
   });
 
-  document.querySelector("#number").textContent = "Number of students: " + chosenArray.length;
+  document.querySelector("#number").textContent = "Number of displayed students: " + chosenArray.length;
 
   chosenArray.forEach((element) => {
-    console.log(element);
-    console.log("iteration number:" + element.iteration);
+    // console.log(element);
     const studTemplate = document.querySelector("#student").content;
 
     const studClone = studTemplate.cloneNode(true);
@@ -128,6 +131,11 @@ function addData(chosenArray) {
 
 function expellStudent(student) {
   student.expelled = true;
+  allStudents.splice(allStudents.indexOf(student), 1);
+  expelledStudents.push(student);
+  console.log(allStudents);
+  console.log(expelledStudents);
+  addData(allStudents);
 }
 
 // displaying pop-up with detailed info about student
@@ -142,7 +150,18 @@ function showDetails(student) {
   document.querySelector("#fullname").textContent = student.firstName + " " + student.middleName + " " + student.nickName + " " + student.lastName;
   document.querySelector("#student-photo").src = student.imageFile;
   document.querySelector("#house-info h2").textContent = student.house;
-  document.querySelector("#first-name").textContent = "First name: " + student.firstName;
+
+  if (student.firstName) {
+    document.querySelector("#first-name").textContent = "First name: " + student.firstName;
+  } else {
+    document.querySelector("#first-name").textContent = "First name: -";
+  }
+
+  if (student.middleName) {
+    document.querySelector("#first-name").textContent = "First name: " + student.firstName;
+  } else {
+    document.querySelector("#first-name").textContent = "First name: -";
+  }
   document.querySelector("#middle-name").textContent = "Middle name: " + student.middleName;
   document.querySelector("#last-name").textContent = "Last name: " + student.lastName;
   document.querySelector("#nick-name").textContent = "Nick name: " + student.nickName;
@@ -180,7 +199,17 @@ document.querySelector("#apply").addEventListener("click", startAdjusting);
 function startAdjusting() {
   // This are arrays with selected input attributes
   const sortInput = [document.querySelector("#name"), document.querySelector("#surname")];
-  const filterInput = [document.querySelector("#prefects"), document.querySelector("#inq"), document.querySelector("#girls"), document.querySelector("#boys"), document.querySelector("#expelled")];
+  const filterInput = [
+    document.querySelector("#gryffindor"),
+    document.querySelector("#hufflepuff"),
+    document.querySelector("#ravenclaw"),
+    document.querySelector("#slytherin"),
+    document.querySelector("#prefects"),
+    document.querySelector("#inq"),
+    document.querySelector("#girls"),
+    document.querySelector("#boys"),
+    document.querySelector("#expelled"),
+  ];
 
   getSort(sortInput, filterInput);
 }
@@ -215,7 +244,7 @@ function getSort(sortInput, filterInput) {
     sortedArray = allStudents;
   }
 
-  console.log(sortedArray);
+  // console.log(sortedArray);
   getFilter(sortedArray, filterInput);
 }
 
@@ -249,6 +278,23 @@ function getFilter(sortedArray, filterInput) {
     filterInput.forEach((input) => {
       if (input.checked === true) {
         switch (input.value) {
+          case "gryffindor":
+            filteredArray = sortedArray.filter((student) => student.house == "Gryffindor");
+            document.querySelector("h1").textContent = "Gryffindor";
+            console.log("gryf");
+            break;
+          case "hufflepuff":
+            filteredArray = sortedArray.filter((student) => student.house == "Hufflepuff");
+            document.querySelector("h1").textContent = "Hufflepuff";
+            break;
+          case "ravenclaw":
+            filteredArray = sortedArray.filter((student) => student.house == "Ravenclaw");
+            document.querySelector("h1").textContent = "Ravenclaw";
+            break;
+          case "slytherin":
+            filteredArray = sortedArray.filter((student) => student.house == "Slytherin");
+            document.querySelector("h1").textContent = "Slytherin";
+            break;
           case "prefects":
             filteredArray = sortedArray.filter((student) => student.prefect === true);
             console.log("prefects");
@@ -266,7 +312,7 @@ function getFilter(sortedArray, filterInput) {
             console.log("boys");
             break;
           case "expelled":
-            filteredArray = sortedArray.filter((student) => student.expelled === true);
+            filteredArray = expelledStudents;
             console.log("expelled");
             break;
         }
@@ -276,7 +322,7 @@ function getFilter(sortedArray, filterInput) {
     filteredArray = sortedArray;
   }
 
-  console.log(filteredArray);
+  // console.log(filteredArray);
 
   // display filtered data
 
