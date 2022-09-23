@@ -341,3 +341,23 @@ function clearResults() {
 }
 
 // SEARCHING
+
+document.querySelector("#search").addEventListener("input", getSearch);
+
+function getSearch() {
+  console.log("get search");
+  const searchInput = this.value;
+  const searchString = firstToUppercase(searchInput);
+  displaySearch(searchString);
+}
+
+function displaySearch(searchString) {
+  console.log(searchString);
+  const searchResult = [];
+  allStudents.forEach((student) => {
+    if (student.firstName.includes(searchString) || student.middleName.includes(searchString) || student.lastName.includes(searchString)) {
+      searchResult.push(student);
+    }
+  });
+  addData(searchResult);
+}
