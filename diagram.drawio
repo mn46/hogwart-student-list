@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="p76yIHVkMcjjHIO2uy8P" name="Page-1">
-        <mxGraphModel dx="891" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+        <mxGraphModel dx="472" dy="374" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -53,11 +53,16 @@
                 <mxCell id="20" value="user clicks &quot;READ MORE&quot;" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" parent="19" connectable="0" vertex="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="22" value="updateDetails" style="swimlane;" parent="1" vertex="1">
-                    <mxGeometry x="449.20000000000005" y="710" width="380.8" height="80" as="geometry"/>
+                <mxCell id="55" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="22" target="57">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="640" y="850" as="targetPoint"/>
+                    </mxGeometry>
                 </mxCell>
-                <mxCell id="23" value="remove class &quot;hidden&quot;&lt;br&gt;add content from allStudents" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="22" vertex="1">
-                    <mxGeometry x="10.8" y="30" width="359.2" height="40" as="geometry"/>
+                <mxCell id="22" value="updateDetails" style="swimlane;" parent="1" vertex="1">
+                    <mxGeometry x="449.2" y="710" width="380.8" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="remove class &quot;hidden&quot;&lt;br&gt;add content from allStudents&lt;br&gt;add event listener to &quot;make a prefect&quot;&lt;br&gt;add event listener to &quot;add to inq squad&quot;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="22" vertex="1">
+                    <mxGeometry x="10.8" y="30" width="359.2" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="32" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="30" target="33" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -81,7 +86,7 @@
                 <mxCell id="34" value="const sortType = value from #filter&lt;br&gt;switch sortType -&amp;gt; different .sort functions for each of the type&lt;br&gt;&lt;br&gt;adjustList(filteredArray)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="33" vertex="1">
                     <mxGeometry x="10" y="23" width="200" height="97" as="geometry"/>
                 </mxCell>
-                <mxCell id="42" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="36" target="13">
+                <mxCell id="42" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="36" target="13" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="36" value="adjustList(sort, filter)" style="swimlane;startSize=23;" parent="1" vertex="1">
@@ -90,46 +95,67 @@
                 <mxCell id="37" value="addData(filteredArray)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="36" vertex="1">
                     <mxGeometry x="10" y="23" width="200" height="27" as="geometry"/>
                 </mxCell>
-                <mxCell id="41" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="39" target="30">
+                <mxCell id="41" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="39" target="30" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="39" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="39" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="140" y="145" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="40" value="click &quot;apply&quot;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="40" value="click &quot;apply&quot;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="150" y="150" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="43" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1">
+                <mxCell id="43" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1088" y="525" as="targetPoint"/>
                         <mxPoint x="1088" y="485" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="44" value="getSearch" style="swimlane;" vertex="1" parent="1">
+                <mxCell id="44" value="getSearch" style="swimlane;" parent="1" vertex="1">
                     <mxGeometry x="978" y="395" width="220" height="90" as="geometry"/>
                 </mxCell>
-                <mxCell id="45" value="const searchInput = value from search&lt;br&gt;displaySearch(searchInput)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="44">
+                <mxCell id="45" value="const searchInput = value from search&lt;br&gt;displaySearch(searchInput)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="44" vertex="1">
                     <mxGeometry x="10" y="23" width="200" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="54" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="47" target="13">
+                <mxCell id="54" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="47" target="13" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="47" value="displaySearch(searchInput)" style="swimlane;" vertex="1" parent="1">
+                <mxCell id="47" value="displaySearch(searchInput)" style="swimlane;" parent="1" vertex="1">
                     <mxGeometry x="978" y="525" width="220" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="48" value="const searchResult = [ ]&lt;br&gt;allStudents.forEach((student) =&amp;gt;&lt;br&gt;if name or middle name or surname includes searchInput, push to searchResult&lt;br&gt;addData(searchResult)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="47">
+                <mxCell id="48" value="const searchResult = [ ]&lt;br&gt;allStudents.forEach((student) =&amp;gt;&lt;br&gt;if name or middle name or surname includes searchInput, push to searchResult&lt;br&gt;addData(searchResult)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="47" vertex="1">
                     <mxGeometry x="10" y="23" width="200" height="97" as="geometry"/>
                 </mxCell>
-                <mxCell id="51" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="52">
+                <mxCell id="51" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="52" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1088" y="395" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="52" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="52" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1028" y="314" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="53" value="user writes sth in search bar" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="53" value="user writes sth in search bar" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="1038" y="318" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="448" y="860" width="382" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" value="" style="endArrow=classic;html=1;exitX=0.137;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="516.3340000000001" y="870" as="sourcePoint"/>
+                        <mxPoint x="516" y="970" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="59" value="user clicks &quot;make a prefect&quot;" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="58">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="60" value="" style="endArrow=classic;html=1;exitX=0.137;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="762.3340000000001" y="870" as="sourcePoint"/>
+                        <mxPoint x="762.0000000000001" y="970" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="61" value="user clicks &quot;add to squad&quot;" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="60">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
