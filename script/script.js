@@ -77,7 +77,7 @@ function cutBetweenSpaces(string) {
 // create new string from last space to the end of primary string
 
 function cutOffLast(string) {
-  const lastString = string.slice(string.lastIndexOf(" "), string.length);
+  const lastString = string.slice(string.lastIndexOf(" "));
   return trimString(lastString);
 }
 
@@ -85,6 +85,16 @@ function cutOffLast(string) {
 
 function firstToUppercase(string) {
   return string[0].toUpperCase() + string.slice(1).toLowerCase();
+}
+
+// split string on hyphen
+
+function getBeforeHyphen(string) {
+  return string.slice(0, string.indexOf("-"));
+}
+
+function getAfterHyphen(string) {
+  return string.slice(string.indexOf("-") + 1);
 }
 
 function createObjects(jsonData) {
@@ -103,12 +113,19 @@ function createObjects(jsonData) {
       student.middleName = firstToUppercase(trimString(midString));
     }
 
-    student.lastName = firstToUppercase(cutOffLast(trimString(jsonObject.fullname)));
+    if (jsonObject.fullname.includes("-")) {
+      const firstPart = firstToUppercase(getBeforeHyphen(cutOffLast(trimString(jsonObject.fullname))));
+      const secondPart = firstToUppercase(getAfterHyphen(cutOffLast(trimString(jsonObject.fullname))));
+      student.lastName = firstPart + "-" + secondPart;
+    } else {
+      student.lastName = firstToUppercase(cutOffLast(trimString(jsonObject.fullname)));
+    }
+
     student.gender = jsonObject.gender;
 
     if (jsonObject.fullname.includes("-")) {
-      const noHyphen = student.lastName.slice(student.lastName.indexOf("-") + 1);
-      student.imageFile = "assets/images/" + noHyphen.toLowerCase() + "_" + noHyphen[0].toLowerCase() + ".png";
+      const noHyphen = getAfterHyphen(jsonObject.fullname).toLowerCase();
+      student.imageFile = "assets/images/" + noHyphen.toLowerCase() + "_" + student.firstName[0].toLowerCase() + ".png";
     } else {
       student.imageFile = "assets/images/" + student.lastName.toLowerCase() + "_" + student.firstName[0].toLowerCase() + ".png";
     }
@@ -123,6 +140,7 @@ function createObjects(jsonData) {
   });
 
   addData(allStudents);
+  console.log(allStudents);
 }
 
 // ADDING DATA
