@@ -136,7 +136,8 @@ function createObjects(jsonData) {
     student.inqSquad = false;
     student.prefect = false;
     student.expelled = false;
-    student.bloodStatus = false;
+    student.bloodStatus = getBloodStatus(student);
+    console.log(`${student.firstName} is ${student.bloodStatus}`);
 
     allStudents.push(student);
   });
@@ -471,4 +472,23 @@ function displaySearch(searchString) {
 
 // GETTING BLOOD STATUS OF STUDENTS
 
-function getBloodStatus() {}
+function getBloodStatus(student) {
+  for (let n = 0; n <= familyNames.pure.length; n++) {
+    // console.log(familyNames.half);
+    if (n < familyNames.pure.length) {
+      if (student.lastName === familyNames.pure[n]) {
+        return "pure-blood";
+      }
+    } else {
+      for (let x = 0; x <= familyNames.half.length; x++) {
+        if (x < familyNames.half.length) {
+          if (student.lastName === familyNames.half[x]) {
+            return "half-blood";
+          }
+        } else {
+          return "muggle-born";
+        }
+      }
+    }
+  }
+}
