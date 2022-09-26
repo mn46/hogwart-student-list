@@ -230,7 +230,30 @@ function showDetails(student) {
   }
 }
 
-// adding prefects and members of inq. squad
+// GETTING BLOOD STATUS OF STUDENTS
+
+function getBloodStatus(student) {
+  for (let n = 0; n <= familyNames.pure.length; n++) {
+    // console.log(familyNames.half);
+    if (n < familyNames.pure.length) {
+      if (student.lastName === familyNames.pure[n]) {
+        return "pure-blood";
+      }
+    } else {
+      for (let x = 0; x <= familyNames.half.length; x++) {
+        if (x < familyNames.half.length) {
+          if (student.lastName === familyNames.half[x]) {
+            return "half-blood";
+          }
+        } else {
+          return "muggle-born";
+        }
+      }
+    }
+  }
+}
+
+// ADDDING PREFECTS
 
 const prefectsG = [];
 const prefectsH = [];
@@ -295,9 +318,18 @@ function closeSmallPopup() {
   document.querySelector("#student-details").classList.add("hidden");
 }
 
+// ADDING MEMBERS OF INQUISITORIAL SQUAD
+
 function addToSquad(student) {
-  console.log("adding to squad" + student);
-  student.inqSquad = true;
+  if (student.bloodStatus === "pure-blood" && student.house === "Slytherin") {
+    console.log("adding to squad" + student.firstName);
+    student.inqSquad = true;
+    document.querySelector("#message").textContent = `${student.firstName} is now a member of Inquisitorial Squad.`;
+    showMessage();
+  } else {
+    document.querySelector("#message").textContent = `${student.firstName} cannot be a member of Inquisitorial Squad.`;
+    showMessage();
+  }
 }
 
 // SORTING AND FILTERING
@@ -468,27 +500,4 @@ function displaySearch(searchString) {
     }
   });
   addData(searchResult);
-}
-
-// GETTING BLOOD STATUS OF STUDENTS
-
-function getBloodStatus(student) {
-  for (let n = 0; n <= familyNames.pure.length; n++) {
-    // console.log(familyNames.half);
-    if (n < familyNames.pure.length) {
-      if (student.lastName === familyNames.pure[n]) {
-        return "pure-blood";
-      }
-    } else {
-      for (let x = 0; x <= familyNames.half.length; x++) {
-        if (x < familyNames.half.length) {
-          if (student.lastName === familyNames.half[x]) {
-            return "half-blood";
-          }
-        } else {
-          return "muggle-born";
-        }
-      }
-    }
-  }
 }
