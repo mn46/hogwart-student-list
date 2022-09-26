@@ -215,16 +215,18 @@ function showDetails(student) {
 
   // event listeners for buttons
   document.querySelector("#close").addEventListener("click", closePopup);
-  document.querySelector("#make-prefect").addEventListener("click", () => makePrefect(student));
+  document.querySelector("#make-prefect").addEventListener("click", makePrefectCallBack);
+  function makePrefectCallBack() {
+    makePrefect(student);
+  }
+
   document.querySelector("#add-inq").addEventListener("click", () => addToSquad(student));
-}
 
-function closePopup() {
-  console.log(this);
-  this.removeEventListener("click", makePrefect);
-
-  this.removeEventListener("click", closePopup);
-  this.parentElement.classList.add("hidden");
+  function closePopup() {
+    document.querySelector("#make-prefect").removeEventListener("click", makePrefectCallBack);
+    document.querySelector("#close").removeEventListener("click", closePopup);
+    document.querySelector("#student-details").classList.add("hidden");
+  }
 }
 
 // adding prefects and members of inq. squad
@@ -257,27 +259,39 @@ function goToHouse(student, chosenArray) {
   if (chosenArray.length == 0) {
     chosenArray.push(student);
     student.prefect = true;
+    document.querySelector("#message").textContent = `${student.firstName} is now a prefect.`;
+    showMessage();
   } else if (chosenArray.length == 1) {
     checkGender(student, chosenArray);
   } else if (chosenArray.length == 2) {
-    cantAdd(student);
+    document.querySelector("#message").textContent = `There is no space in ${student.house} for more prefects.`;
+    showMessage();
   }
   console.log(chosenArray);
 }
 
 function checkGender(student, prefectsArray) {
   if (prefectsArray[0].gender === student.gender) {
-    cantAdd(student);
+    document.querySelector("#message").textContent = `There is already a ${student.gender} prefect in ${student.house}.`;
+    showMessage();
   } else {
     student.prefect = true;
     prefectsArray.push(student);
+    document.querySelector("#message").textContent = `${student.firstName} is now a prefect.`;
+    showMessage();
   }
 }
 
-function cantAdd(student) {
+function showMessage() {
   document.querySelector("#pop-up").classList.remove("hidden");
-  document.querySelector("#message").textContent = `There is no space in ${student.house} for more prefects.`;
-  document.querySelector("#ok").addEventListener("click", closePopup);
+  document.querySelector("#ok").addEventListener("click", closeSmallPopup);
+}
+
+function closeSmallPopup() {
+  this.removeEventListener("click", closeSmallPopup);
+  document.querySelector("#pop-up").classList.add("hidden");
+  // close the big pop-up as well
+  document.querySelector("#student-details").classList.add("hidden");
 }
 
 function addToSquad(student) {
