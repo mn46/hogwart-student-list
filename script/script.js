@@ -137,7 +137,7 @@ function createObjects(jsonData) {
     student.prefect = false;
     student.expelled = false;
     student.bloodStatus = getBloodStatus(student);
-    console.log(`${student.firstName} is ${student.bloodStatus}`);
+    // console.log(`${student.firstName} is ${student.bloodStatus}`);
 
     allStudents.push(student);
   });
@@ -221,10 +221,25 @@ function showDetails(student) {
     makePrefect(student);
   }
 
-  document.querySelector("#add-inq").addEventListener("click", () => addToSquad(student));
+  if (student.inqSquad === true) {
+    document.querySelector("#add-inq").addEventListener("click", removeFromSquadCallback);
+  } else {
+    document.querySelector("#add-inq").addEventListener("click", addToSquadCallback);
+  }
+
+  function removeFromSquadCallback() {
+    removeFromSquad(student);
+    document.querySelector("#add-inq").removeEventListener("click", removeFromSquadCallback);
+  }
+
+  function addToSquadCallback() {
+    addToSquad(student);
+    document.querySelector("#add-inq").removeEventListener("click", addToSquadCallback);
+  }
 
   function closePopup() {
     document.querySelector("#make-prefect").removeEventListener("click", makePrefectCallBack);
+
     document.querySelector("#close").removeEventListener("click", closePopup);
     document.querySelector("#student-details").classList.add("hidden");
   }
@@ -315,7 +330,7 @@ function closeSmallPopup() {
   this.removeEventListener("click", closeSmallPopup);
   document.querySelector("#pop-up").classList.add("hidden");
   // close the big pop-up as well
-  document.querySelector("#student-details").classList.add("hidden");
+  // document.querySelector("#student-details").classList.add("hidden");
 }
 
 // ADDING MEMBERS OF INQUISITORIAL SQUAD
@@ -326,10 +341,25 @@ function addToSquad(student) {
     student.inqSquad = true;
     document.querySelector("#message").textContent = `${student.firstName} is now a member of Inquisitorial Squad.`;
     showMessage();
+    document.querySelector("#add-inq").textContent = "Remove from Inquisitorial Squad";
+    // document.querySelector("#add-inq").addEventListener("click", removeFromSquadCallback);
+
+    // function removeFromSquadCallback() {
+    //   document.querySelector("#add-inq").removeEventListener("click", removeFromSquadCallback);
+    //   removeFromSquad(student);
+    // }
   } else {
     document.querySelector("#message").textContent = `${student.firstName} cannot be a member of Inquisitorial Squad.`;
     showMessage();
   }
+}
+
+function removeFromSquad(student) {
+  console.log("removing from squad" + student.firstName);
+  student.inqSquad = false;
+  document.querySelector("#add-inq").textContent = "Add to Inquisitorial Squad";
+  document.querySelector("#message").textContent = `${student.firstName} is no longer a member of Inquisitorial Squad.`;
+  showMessage();
 }
 
 // SORTING AND FILTERING
@@ -438,18 +468,23 @@ function getFilter(sortedArray, filterInput) {
             break;
           case "prefects":
             filteredArray = prefectsG.concat(prefectsH, prefectsR, prefectsS);
+            document.querySelector("h1").textContent = "Prefects";
             break;
           case "inq":
             filteredArray = sortedArray.filter((student) => student.inqSquad === true);
+            document.querySelector("h1").textContent = "Members of Inquisitorial Squad";
             break;
           case "girls":
             filteredArray = sortedArray.filter((student) => student.gender === "girl");
+            document.querySelector("h1").textContent = "Girls";
             break;
           case "boys":
             filteredArray = sortedArray.filter((student) => student.gender === "boy");
+            document.querySelector("h1").textContent = "Boys";
             break;
           case "expelled":
             filteredArray = expelledStudents;
+            document.querySelector("h1").textContent = "Expelled students";
             break;
         }
       }
@@ -473,6 +508,7 @@ function adjustList(filteredArray) {
 document.querySelector("#clear").addEventListener("click", clearResults);
 
 function clearResults() {
+  document.querySelector("h1").textContent = "All students";
   addData(allStudents);
 }
 
