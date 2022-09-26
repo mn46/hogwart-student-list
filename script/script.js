@@ -1,6 +1,6 @@
 "use strict";
 
-window.addEventListener("DOMContentLoaded", start);
+window.addEventListener("DOMContentLoaded", fetchFamilies);
 
 const url = "https://petlatkea.dk/2021/hogwarts/students.json";
 const urlFamilies = "https://petlatkea.dk/2021/hogwarts/families.json";
@@ -20,25 +20,26 @@ const Student = {
 };
 
 let filesCounter = 0;
+let familyNames;
 const allStudents = [];
 const expelledStudents = [];
 
 // fetching the student data
 
-function start() {
-  fetch(url)
+function fetchFamilies() {
+  fetch(urlFamilies)
     .then((response) => response.json())
-    .then((jsonData) => {
+    .then((jsonFamilyData) => {
       checkFile();
-      createObjects(jsonData);
       filesCounter++;
-      console.log(jsonData);
+      familyNames = jsonFamilyData;
+      console.log(familyNames);
     });
 }
 
 function checkFile() {
   if (filesCounter !== 0) {
-    fetchFamilies();
+    fetchStudents();
   } else {
     setTimeout(checkFile, 1000);
   }
@@ -46,11 +47,12 @@ function checkFile() {
 
 // fetching the data for blood status
 
-function fetchFamilies() {
-  fetch(urlFamilies)
+function fetchStudents() {
+  fetch(url)
     .then((response) => response.json())
-    .then((jsonFamilyData) => {
-      console.log(jsonFamilyData);
+    .then((jsonData) => {
+      console.log(jsonData);
+      createObjects(jsonData);
     });
 }
 
@@ -374,7 +376,6 @@ function getFilter(sortedArray, filterInput) {
           case "gryffindor":
             filteredArray = sortedArray.filter((student) => student.house == "Gryffindor");
             document.querySelector("h1").textContent = "Gryffindor";
-            console.log("gryf");
             break;
           case "hufflepuff":
             filteredArray = sortedArray.filter((student) => student.house == "Hufflepuff");
@@ -390,23 +391,18 @@ function getFilter(sortedArray, filterInput) {
             break;
           case "prefects":
             filteredArray = prefectsG.concat(prefectsH, prefectsR, prefectsS);
-            console.log("prefects");
             break;
           case "inq":
             filteredArray = sortedArray.filter((student) => student.inqSquad === true);
-            console.log("inq");
             break;
           case "girls":
             filteredArray = sortedArray.filter((student) => student.gender === "girl");
-            console.log("girls");
             break;
           case "boys":
             filteredArray = sortedArray.filter((student) => student.gender === "boy");
-            console.log("boys");
             break;
           case "expelled":
             filteredArray = expelledStudents;
-            console.log("expelled");
             break;
         }
       }
@@ -458,3 +454,7 @@ function displaySearch(searchString) {
   });
   addData(searchResult);
 }
+
+// GETTING BLOOD STATUS OF STUDENTS
+
+function getBloodStatus() {}
