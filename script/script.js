@@ -53,6 +53,7 @@ function fetchStudents() {
     .then((jsonData) => {
       console.log(jsonData);
       createObjects(jsonData);
+      setTimeout(displayHackPopup, 5000);
     });
 }
 
@@ -157,7 +158,6 @@ function addData(chosenArray) {
   document.querySelector("#number").textContent = "Number of displayed students: " + chosenArray.length;
 
   chosenArray.forEach((element) => {
-    // console.log(element);
     const studTemplate = document.querySelector("#student").content;
 
     const studClone = studTemplate.cloneNode(true);
@@ -165,7 +165,6 @@ function addData(chosenArray) {
     studClone.querySelector(".fullname").textContent = element.firstName + " " + element.middleName + " " + element.nickName + " " + element.lastName;
 
     studClone.querySelector(".read-more").addEventListener("click", () => showDetails(element));
-    // studClone.querySelector(".read-more").addEventListener("click", showDetails);
     studClone.querySelector(".expell").addEventListener("click", () => expellStudent(element));
 
     document.querySelector("#student-list").appendChild(studClone);
@@ -175,12 +174,17 @@ function addData(chosenArray) {
 // expelling student
 
 function expellStudent(student) {
-  student.expelled = true;
-  allStudents.splice(allStudents.indexOf(student), 1);
-  expelledStudents.push(student);
-  console.log(allStudents);
-  console.log(expelledStudents);
-  addData(allStudents);
+  if (student.nickName === "Hackerman") {
+    document.querySelector("#message").textContent = "You cannot expell me. Sorry!";
+    showMessage();
+  } else {
+    student.expelled = true;
+    allStudents.splice(allStudents.indexOf(student), 1);
+    expelledStudents.push(student);
+    console.log(allStudents);
+    console.log(expelledStudents);
+    addData(allStudents);
+  }
 }
 
 // displaying pop-up with detailed info about student
@@ -223,8 +227,10 @@ function showDetails(student) {
 
   if (student.inqSquad === true) {
     document.querySelector("#add-inq").addEventListener("click", removeFromSquadCallback);
+    document.querySelector("#add-inq").textContent = "Remove from Inquisitorial Squad";
   } else {
     document.querySelector("#add-inq").addEventListener("click", addToSquadCallback);
+    document.querySelector("#add-inq").textContent = "Add to Inquisitorial Squad";
   }
 
   function removeFromSquadCallback() {
@@ -233,6 +239,7 @@ function showDetails(student) {
   }
 
   function addToSquadCallback() {
+    console.log("add to squad");
     addToSquad(student);
     document.querySelector("#add-inq").removeEventListener("click", addToSquadCallback);
   }
@@ -329,25 +336,17 @@ function showMessage() {
 function closeSmallPopup() {
   this.removeEventListener("click", closeSmallPopup);
   document.querySelector("#pop-up").classList.add("hidden");
-  // close the big pop-up as well
-  // document.querySelector("#student-details").classList.add("hidden");
 }
 
 // ADDING MEMBERS OF INQUISITORIAL SQUAD
 
 function addToSquad(student) {
-  if (student.bloodStatus === "pure-blood" && student.house === "Slytherin") {
+  if (student.bloodStatus === "pure-blood" || student.house === "Slytherin") {
     console.log("adding to squad" + student.firstName);
     student.inqSquad = true;
     document.querySelector("#message").textContent = `${student.firstName} is now a member of Inquisitorial Squad.`;
     showMessage();
     document.querySelector("#add-inq").textContent = "Remove from Inquisitorial Squad";
-    // document.querySelector("#add-inq").addEventListener("click", removeFromSquadCallback);
-
-    // function removeFromSquadCallback() {
-    //   document.querySelector("#add-inq").removeEventListener("click", removeFromSquadCallback);
-    //   removeFromSquad(student);
-    // }
   } else {
     document.querySelector("#message").textContent = `${student.firstName} cannot be a member of Inquisitorial Squad.`;
     showMessage();
@@ -536,4 +535,75 @@ function displaySearch(searchString) {
     }
   });
   addData(searchResult);
+}
+
+// HACKING THE SYSTEM
+
+function displayHackPopup() {
+  document.querySelector("#hack-popup").classList.remove("hidden");
+  document.querySelector("#hack").addEventListener("click", hackTheSystem);
+  document.querySelector("#no").addEventListener("click", quitHackPopup);
+}
+
+function quitHackPopup() {
+  document.querySelector("#hack-popup").classList.add("hidden");
+}
+
+function hackTheSystem() {
+  document.querySelector("#hack").removeEventListener("click", hackTheSystem);
+  document.querySelector("#hack-message").textContent = "Wow, it really worked! Sorry, no Firebolt for you. And the system is now hacked.";
+  document.querySelector("#hack").textContent = "ok";
+  document.querySelector("#hack").addEventListener("click", quitHackPopup);
+  document.querySelector("#no").classList.add("hidden");
+
+  // break adding students to inq. squad
+  document.querySelector("#add-inq").addEventListener("click", breakInqSquad);
+
+  addMe();
+  mixBloodStatus();
+}
+
+function addMe() {
+  const student = Object.create(Student);
+  student.firstName = "Marta";
+  student.middleName = "Halina";
+  student.lastName = "Nowak";
+  student.nickName = "Hackerman";
+  allStudents.push(student);
+  console.log(student);
+}
+
+function mixBloodStatus() {
+  const bloodOptions = ["pure-blood", "half-blood", "muggle-born"];
+  function randomNumber() {
+    return Math.floor(Math.random() * 3);
+  }
+  allStudents.forEach((student) => {
+    if (student.bloodStatus === "pure-blood") {
+      student.bloodStatus = bloodOptions[randomNumber()];
+    } else {
+      student.bloodStatus = "pure-blood";
+    }
+    console.log(student.bloodStatus);
+  });
+
+  addData(allStudents);
+}
+
+function breakInqSquad() {
+  setTimeout(breakingInqSquadLoop, 1000);
+}
+
+function breakingInqSquadLoop() {
+  console.log("breakInqSquad");
+
+  allStudents.forEach((student) => {
+    if (student.inqSquad === true) {
+      console.log("student scheduled for removal");
+      setTimeout(removeFromSquadCallback, 5000);
+    }
+    function removeFromSquadCallback() {
+      removeFromSquad(student);
+    }
+  });
 }
