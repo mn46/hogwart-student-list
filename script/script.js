@@ -24,7 +24,7 @@ let familyNames;
 const allStudents = [];
 const expelledStudents = [];
 
-// fetching the student data
+// fetching the data for blood status
 
 function fetchFamilies() {
   fetch(urlFamilies)
@@ -46,7 +46,7 @@ function checkFile() {
   }
 }
 
-// fetching the data for blood status
+// fetching the data for students
 
 function fetchStudents() {
   fetch(url)
