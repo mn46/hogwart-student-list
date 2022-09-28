@@ -1,6 +1,18 @@
+:root {
+    --darker-brown: #98775c;
+}
+
 body {
     margin: 0;
     padding: 0;
+    background-color: #F3EDDF;
+    font-family: 'Lora', serif;
+}
+
+/* fonts */
+h1, h2 {
+    font-family: 'DM Serif Display', serif;
+    color: #2c2a29;
 }
 
 main {
@@ -10,19 +22,10 @@ main {
 header {
     margin: 0;
     padding: 0;
-    background-color: rgb(108, 108, 108);
+    background-color: var(--darker-brown);
     height: 8vh;
     display: flex;
     align-items: center;
-}
-
-nav {
-    width: 100vw;
-    height: 5vh;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
 }
 
 #sort-filter {
@@ -64,11 +67,21 @@ nav {
     flex-direction: column;
 }
 
+
+
 .student {
     margin-top: 4vh;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+}
+
+#buttons {
+    width: 10vw;
+    height: 4vh;
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
 
@@ -90,6 +103,8 @@ nav {
 }
 
 #close {
+    width: 2em;
+    height: auto;
     justify-self: end;
     background-color: transparent;
     border: none;
@@ -99,6 +114,25 @@ nav {
     display: grid;
     grid-template-columns: 30% 30% 25%;
     grid-gap: 3%;
+}
+
+#student-photo {
+    width: 65%;
+    height: auto;
+}
+
+#house-info {
+    display: flex;
+    flex-direction: row;
+}
+
+#house-info img {
+    width: 3em;
+    height: auto;
+}
+
+#house-info h2 {
+    padding-left: 5%;
 }
 
 #student-actions {
@@ -121,8 +155,26 @@ nav {
     transform: translate(-50%, -50%);
     width: 40%;
     height: 20%;
-    background-color: rgb(205, 136, 136);
+    background-color: var(--darker-brown);
     z-index: 3;
+}
+
+/* buttons */
+
+#apply, #clear, .read-more, .expell {
+    border: none;
+    background-color: var(--darker-brown);
+    color: #fff;
+    font-weight: 700;
+}
+
+#apply, #clear {
+    padding: 5%;
+    margin-right: 5%;
+}
+
+.read-more, .expell {
+    padding: 1% 5%
 }
 
 /* styling to use in js */

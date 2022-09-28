@@ -221,6 +221,22 @@ function showDetails(student) {
   document.querySelector("#prefect").textContent = "Prefect: " + student.prefect;
   document.querySelector("#blood-status").textContent = "Blood status: " + student.bloodStatus;
 
+  // appearance
+
+  if (student.house === "Gryffindor") {
+    document.querySelector("#student-details").style.backgroundColor = "#F2B9B9";
+    document.querySelector("#house-info img").src = `assets/crests/Gryffindor.svg`;
+  } else if (student.house === "Hufflepuff") {
+    document.querySelector("#student-details").style.backgroundColor = "#FFEAAF";
+    document.querySelector("#house-info img").src = `assets/crests/Hufflepuff.svg`;
+  } else if (student.house === "Ravenclaw") {
+    document.querySelector("#student-details").style.backgroundColor = "#A1C0FF";
+    document.querySelector("#house-info img").src = `assets/crests/Ravenclaw.svg`;
+  } else if (student.house === "Slytherin") {
+    document.querySelector("#student-details").style.backgroundColor = "#7ED1B3";
+    document.querySelector("#house-info img").src = `assets/crests/Slytherin.svg`;
+  }
+
   // event listeners for buttons
   document.querySelector("#close").addEventListener("click", closePopup);
   document.querySelector("#make-prefect").addEventListener("click", makePrefectCallBack);
