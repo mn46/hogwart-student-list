@@ -32,6 +32,7 @@ function fetchFamilies() {
     .then((jsonFamilyData) => {
       checkFile();
       filesCounter++;
+      console.log(filesCounter);
       familyNames = jsonFamilyData;
       console.log(familyNames);
     });
@@ -53,7 +54,7 @@ function fetchStudents() {
     .then((jsonData) => {
       console.log(jsonData);
       createObjects(jsonData);
-      setTimeout(displayHackPopup, 5000);
+      setTimeout(displayHackPopup, 60000);
     });
 }
 
@@ -184,6 +185,8 @@ function expellStudent(student) {
     console.log(allStudents);
     console.log(expelledStudents);
     addData(allStudents);
+    document.querySelector("#message").textContent = `${student.firstName} was expelled.`;
+    showMessage();
   }
 }
 
