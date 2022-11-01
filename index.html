@@ -8,7 +8,7 @@
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <title>Hogwarts Student List</title>
 </head>
 <body>
@@ -96,7 +96,7 @@
             <template id="student">
                 <div class="student">
                     <p class="fullname"></p>
-                    <div id="buttons">
+                    <div class="buttons">
                         <button class="read-more">read more</button>
                         <button class="expell secondary">expell</button>
                     </div>
@@ -144,9 +144,13 @@
     </div>
 
     <div id="hack-popup" class="hidden">
-        <p id="hack-message">Congratulations, you won a brand new Firebolt!</p>
-        <button id="hack">Give it to me!</button>
-        <button id="no">I don't want the best broomstick in the world</button>
+        <div id="hack-container">
+            <p id="hack-message">Congratulations, you won a brand new Firebolt!</p>
+            <div class="buttons">
+                <button id="hack">Give it to me!</button>
+                <button id="no">I don't want the best broomstick in the world</button>
+            </div>
+        </div>
     </div>
 
     </main>

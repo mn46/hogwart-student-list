@@ -10,12 +10,11 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--light-color);
-    font-family: 'Lora', serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* fonts */
 h1, h2 {
-    font-family: 'DM Serif Display', serif;
     color: var(--text);
 }
 
@@ -76,8 +75,6 @@ label {
     flex-direction: column;
 }
 
-
-
 .student {
     margin-top: 4vh;
     display: flex;
@@ -86,9 +83,8 @@ label {
     justify-content: space-between;
 }
 
-#buttons {
-    width: 10vw;
-    height: 4vh;
+.buttons {
+    width: 14rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -96,8 +92,8 @@ label {
 
 /* student details */
 
-#student-details {
-    position: absolute;
+#student-details, #hack-popup {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -164,7 +160,7 @@ label {
     height: 5vh;
 }
 
-#pop-up, #hack-popup {
+#pop-up, #hack-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -179,14 +175,42 @@ label {
     z-index: 3;
 }
 
+#hack-container {
+    justify-content: center;
+}
+
+
+#hack-popup .buttons {
+    width: 70%;
+}
+
 #hack {
-    margin-bottom: 2rem;
+    padding: 0.5rem 1rem;
+    color: var(--darker-brown);
+    background-color: var(--light-color);
+    border: none;
+    border-radius: 5px;
+}
+
+#no {
+    padding: 0.5rem 1rem;
+    color: var(--light-color);
+    background-color: transparent;
+    border: 2px solid var(--light-color);
+    border-radius: 5px;
+}
+
+#hack-message {
+    font-size: 120%;
+    font-weight: 600;
+    color: var(--light-color);
+    text-transform: uppercase;
 }
 
 /* buttons */
 
-
 #apply, .read-more, .expell {
+    padding: 0.5rem 1rem;
     border-radius: 5px;
     border: none;
     background-color: var(--darker-brown);
@@ -195,15 +219,15 @@ label {
 }
 
 #apply, #clear {
-    padding: 5%;
     margin-right: 5%;
 }
 
 .read-more, .expell {
-    padding: 1% 5%
+    padding: 0.5rem 1rem;
 }
 
 .secondary {
+    padding: 0.5rem 1rem;
     color: var(--darker-brown);
     background-color: transparent;
     font-weight: 700;
