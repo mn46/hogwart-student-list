@@ -1,24 +1,26 @@
 :root {
-    --darker-brown: #98775c;
+    --light-color: #F3EDDF;
+    --dark-color: #cdc2a8;
+    --darker-brown: #514235;
+    --text: #2c2a29;
+    --dark-bg: #2c2a2957;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-color: #F3EDDF;
+    background-color: var(--light-color);
     font-family: 'Lora', serif;
 }
 
 /* fonts */
 h1, h2 {
     font-family: 'DM Serif Display', serif;
-    color: #2c2a29;
+    color: var(--text);
 }
 
-
-
 main {
-    margin: 0 15vw 0 5vw;
+    padding: 0 15vw 0 5vw;
 }
 
 header {
@@ -32,10 +34,11 @@ header {
 
 #sort-filter {
     position: fixed;
+    left: 0;
     height: 100vh;
-    border-right: 1px solid #000;
-    padding-top: 10vh;
-    padding-right: 5vw;
+    background-color: var(--dark-color);
+    border-right: 1px solid var(--darker-brown);
+    padding: 10vh 5vw 0 5vw;
 }
 
 label {
@@ -94,7 +97,17 @@ label {
 /* student details */
 
 #student-details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--dark-bg);
+}
+
+#details-container {
     padding: 5%;
+    border-radius: 10px;
     display: grid;
     grid-template-rows: 5% 95%;
     position: fixed;
@@ -158,6 +171,7 @@ label {
     position: fixed;
     top: 50%;
     left: 50%;
+    border-radius: 5px;
     transform: translate(-50%, -50%);
     width: 40%;
     height: 20%;
@@ -165,12 +179,15 @@ label {
     z-index: 3;
 }
 
-/* buttons */
-button {
-    border: none;
+#hack {
+    margin-bottom: 2rem;
 }
 
-#apply, #clear, .read-more, .expell {
+/* buttons */
+
+
+#apply, .read-more, .expell {
+    border-radius: 5px;
     border: none;
     background-color: var(--darker-brown);
     color: #fff;
@@ -184,6 +201,14 @@ button {
 
 .read-more, .expell {
     padding: 1% 5%
+}
+
+.secondary {
+    color: var(--darker-brown);
+    background-color: transparent;
+    font-weight: 700;
+    border-radius: 5px;
+    border: 2px solid var(--darker-brown);
 }
 
 /* styling to use in js */
